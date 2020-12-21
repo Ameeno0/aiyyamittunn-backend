@@ -58,6 +58,7 @@ const updateUser = async ({ params, body }) => {
 };
 
 const loginUser = async ({ params, body }) => {
+  console.log(body);
   const user = await userModel.findOne({ email: body.email });
 
   if (!user) throw new Error('No user found for this email');

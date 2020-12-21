@@ -1,6 +1,6 @@
-const express = require("express");
+const express = require('express');
 const userRouter = express.Router();
-const { userLogics } = require("../logics");
+const { userLogics } = require('../logics');
 
 const handleRequest = (fn) => (req, res) =>
   fn({
@@ -13,11 +13,14 @@ const handleRequest = (fn) => (req, res) =>
       res.status(400).json(err);
     });
 
-userRouter.get("/", handleRequest(userLogics.rest.restGetAll));
-userRouter.get("/:pkid", handleRequest(userLogics.rest.restGetOne));
-userRouter.post("/create", handleRequest(userLogics.rest.createNewUser));
-userRouter.post("/login", handleRequest(userLogics.rest.loginUser));
-userRouter.patch("/promoteUser", handleRequest(userLogics.rest.promoteUser));
-userRouter.patch("/update/:pkid", handleRequest(userLogics.rest.updateUser));
+userRouter.get('/', handleRequest(userLogics.rest.restGetAll));
+userRouter.get('/:pkid', handleRequest(userLogics.rest.restGetOne));
+userRouter.get('/test/view', (req, res) =>
+  res.render('../views/error', { status: 'error' })
+);
+userRouter.post('/create', handleRequest(userLogics.rest.createNewUser));
+userRouter.post('/login', handleRequest(userLogics.rest.loginUser));
+userRouter.patch('/promoteUser', handleRequest(userLogics.rest.promoteUser));
+userRouter.patch('/update/:pkid', handleRequest(userLogics.rest.updateUser));
 
 module.exports = userRouter;

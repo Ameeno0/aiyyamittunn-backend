@@ -18,7 +18,7 @@ db.once("open", () => console.log("connection to db established"));
 app.use(express.json());
 
 app.use(cors());
-
+app.set('view engine', 'pug'); 
 app.use("/api/v1", apiRoute);
 
 app.listen(process.env.PORT, () =>
